@@ -8,9 +8,9 @@ export default function BasicDemo() {
   useEffect(() => {}, []);
 
   let redirect = () => {
-    if (window !== undefined) {
-      window.location = "/dashboard";
-    }
+    // if (window !== undefined) {
+    //   window.location = "/dashboard";
+    // }
   };
   return (
     <div className="bg-[#121212] dark h-[100%]">

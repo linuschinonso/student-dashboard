@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Sidebar */
+.sidebar {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #343a40;
+  padding-top: 60px;
+}
+.sidebar a {
+  padding: 10px;
+  text-decoration: none;
+  color: #f8f9fa;
+  display: block;
+  /* Hover effect to make words bigger */
+  transition: font-size 0.3s;
+}
+.sidebar a:hover {
+  background-color: #495057;
+  font-size: 18px; /* Increase font size on hover */
+}
+/* Content */
+.content {
+  margin-left: 250px;
+  padding: 20px;
+}
+
+#root {
+  background-color: #121212;
+  /* background: rgb(29, 29, 29); */
+  /* background: -moz-linear-gradient(
+    97deg,
+    rgba(29, 29, 29, 1) 0%,
+    rgba(29, 29, 29, 1) 51%
+  );
+  background: -webkit-linear-gradient(
+    97deg,
+    rgba(29, 29, 29, 1) 0%,
+    rgba(29, 29, 29, 1) 51%
+  );
+  background: linear-gradient(
+    97deg,
+    rgba(29, 29, 29, 1) 0%,
+    rgba(29, 29, 29, 1) 51%
+  ); */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1d1d1d",endColorstr="#1d1d1d",GradientType=1);
+}
+.glass {
+  backdrop-filter: blur(25px);
+  background-color: rgba(18, 18, 18, 0.45);
+}
+.glass2 {
+  backdrop-filter: blur(25px);
+  background-color: rgba(29, 29, 29, 0.45);
+}

@@ -33,7 +33,7 @@ export default function BasicDemo() {
   }
   const [products, setproducts] = useState([]);
   async function fetchAllStudents() {
-    const endpoint = "http://linus-student-backend-fmzv.onrender.com/students";
+    const endpoint = "https://linus-student-backend-fmzv.onrender.com/students";
 
     try {
       const response = await axios.get(endpoint);

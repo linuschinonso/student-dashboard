@@ -44,6 +44,7 @@ export default function BasicDemo() {
       alert(response.data);
       // Return the students array if needed
       return response.data;
+      console.log(response.data);
     } catch (error) {
       console.error("Failed to fetch students:", error);
       return null;

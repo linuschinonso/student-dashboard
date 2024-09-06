@@ -449,7 +449,7 @@ export default function BasicDemo() {
                           variant="subtitle2"
                           fontWeight={600}
                         >
-                          {product.regnumber}
+                          {product.reg_number}
                         </Typography>
                       </Box>
                     </Box>

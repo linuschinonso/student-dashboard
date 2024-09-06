@@ -461,7 +461,7 @@ export default function BasicDemo() {
                       fontWeight={400}
                       sx={{ color: "white" }}
                     >
-                      {product.name}
+                      {product.full_name}
                     </Typography>
                   </TableCell>
                 </TableRow>

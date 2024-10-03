@@ -464,8 +464,16 @@ export default function BasicDemo() {
       <p className="text-white text-2xl font-bold m-4 ml-10 sm:text-center">
         Students
       </p>
-      <div className="md:self-center flex flex-row md:w-[75%] text-white border border-white  items-center justify-center flex-wrap gap-4 m-2">
-        <Box sx={{ overflow: "auto", color: "white", width: "950%" }}>
+      <div className="self-center space-x-4 justify-center flex flex-row md:w-[75%] text-white border border-white  flex-wrap gap-4 m-2">
+        <Box
+          sx={{
+            overflow: "auto",
+            color: "white",
+            width: "950%",
+            alignSelf: "center",
+            justifyContent: "center",
+          }}
+        >
           <Table>
             <TableHead>
               <TableRow>

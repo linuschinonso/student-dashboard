@@ -1,17 +1,10 @@
 "use client";
 import Sidebar from "@/components/Sidebar";
-import { redirect } from "next/dist/server/api-utils";
+// import { redirect } from "next/dist/server/api-utils";
 import React, { useEffect } from "react";
 // import { Button } from "primereact/button";
 
 export default function BasicDemo() {
-  useEffect(() => {}, []);
-
-  let redirect = () => {
-    // if (window !== undefined) {
-    //   window.location = "/dashboard";
-    // }
-  };
   return (
     <div className="bg-[#121212] dark h-[100%]">
       {/* <Sidebar /> */}
@@ -84,7 +77,9 @@ export default function BasicDemo() {
               </div>
               <div class="mt-8">
                 <button
-                  onClick={redirect()}
+                  onClick={() => {
+                    window.location.href = "/dashboard";
+                  }}
                   class="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600"
                 >
                   Login

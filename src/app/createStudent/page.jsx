@@ -16,16 +16,16 @@ function Page() {
 
   // State to manage API response and errors
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState(null);
 
   // Handle form input change
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
   // Handle form submission
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     setError(null);
@@ -47,7 +47,7 @@ function Page() {
 
       // Handle success, show feedback to the user, redirect, etc.
       console.log("User signed up successfully:", data);
-    } catch (err: any) {
+    } catch (err) {
       setError(err.message);
     } finally {
       setIsLoading(false);
@@ -90,7 +90,10 @@ function Page() {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="fullname" className="block text-gray-700 font-medium">
+            <label
+              htmlFor="fullname"
+              className="block text-gray-700 font-medium"
+            >
               Full Name
             </label>
             <input

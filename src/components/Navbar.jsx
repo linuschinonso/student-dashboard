@@ -44,7 +44,10 @@ function Navbar() {
           </button>
         </div>
         <div class="hidden lg:flex lg:gap-x-12">
-          <a href="#" class="text-sm font-semibold leading-6 text-white">
+          <a
+            href="/dashboard"
+            class="text-sm font-semibold leading-6 text-white"
+          >
             Dashboard
           </a>
           <a
@@ -110,7 +113,7 @@ function Navbar() {
                   {/* <!-- 'Product' sub-menu, show/hide based on menu state. --> */}
                 </div>
                 <a
-                  href="#"
+                  href="/dashboard#"
                   class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Dashboard
@@ -120,10 +123,10 @@ function Navbar() {
                   // href="/"
                   class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  Student
+                  Create Student
                 </a>
                 <a
-                  href="#"
+                  href="/"
                   class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Settings

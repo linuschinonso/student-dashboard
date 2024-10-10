@@ -7,11 +7,15 @@ import React, { useState } from "react";
 function Page() {
   // State to manage form inputs
   const [formData, setFormData] = useState({
-    fullname: "",
+    full_name: "",  // Corrected to match state
     email: "",
     phone: "",
     gender: "",
     contactMethod: "",
+    level: "200lvl",  // Initial default value
+    reg_number: "",
+    username: "",
+    password: "",
   });
 
   // State to manage API response and errors
@@ -31,13 +35,16 @@ function Page() {
     setError(null);
 
     try {
-      const response = await fetch("/api/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "https://linus-student-backend-fmzv.onrender.com/students",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       const data = await response.json();
 
@@ -90,17 +97,14 @@ function Page() {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label
-              htmlFor="fullname"
-              className="block text-gray-700 font-medium"
-            >
+            <label htmlFor="full_name" className="block text-gray-700 font-medium">
               Full Name
             </label>
             <input
               type="text"
-              id="fullname"
-              name="fullname"
-              value={formData.fullname}
+              id="full_name"
+              name="full_name"
+              value={formData.full_name}
               onChange={handleInputChange}
               className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
               required
@@ -215,6 +219,70 @@ function Page() {
                 <span className="ml-2 text-gray-700">Text Message</span>
               </label>
             </div>
+          </div>
+
+          {/* New fields */}
+          <div>
+            <label htmlFor="level" className="block text-gray-700 font-medium">
+              Level
+            </label>
+            <select
+              id="level"
+              name="level"
+              value={formData.level}
+              onChange={handleInputChange}
+              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
+            >
+              <option value="100lvl">100lvl</option>
+              <option value="200lvl">200lvl</option>
+              <option value="300lvl">300lvl</option>
+              <option value="400lvl">400lvl</option>
+            </select>
+          </div>
+
+          <div>
+            <label htmlFor="reg_number" className="block text-gray-700 font-medium">
+              Registration Number
+            </label>
+            <input
+              type="text"
+              id="reg_number"
+              name="reg_number"
+              value={formData.reg_number}
+              onChange={handleInputChange}
+              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
+              required
+            />
+          </div>
+
+          <div>
+            <label htmlFor="username" className="block text-gray-700 font-medium">
+              Username
+            </label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              value={formData.username}
+              onChange={handleInputChange}
+              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
+              required
+            />
+          </div>
+
+          <div>
+            <label htmlFor="password" className="block text-gray-700 font-medium">
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleInputChange}
+              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
+              required
+            />
           </div>
 
           <div className="text-center">

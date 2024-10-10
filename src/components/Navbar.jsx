@@ -47,7 +47,10 @@ function Navbar() {
           <a href="#" class="text-sm font-semibold leading-6 text-white">
             Dashboard
           </a>
-          <a href="#" class="text-sm font-semibold leading-6 text-white">
+          <a
+            href="/createStudent"
+            class="text-sm font-semibold leading-6 text-white"
+          >
             Student
           </a>
           <a href="#" class="text-sm font-semibold leading-6 text-white">

@@ -464,14 +464,15 @@ export default function BasicDemo() {
       <p className="text-white text-2xl font-bold m-4 ml-10 sm:text-center">
         Students
       </p>
-      <div className="self-center space-x-4 justify-center flex flex-row md:w-[75%] text-white border border-white  flex-wrap gap-4 m-2">
+      <div className="flex justify-center items-center text-white border border-white m-2">
         <Box
           sx={{
             overflow: "auto",
             color: "white",
-            width: "950%",
-            alignSelf: "center",
+            width: "95%", // Adjust the width as necessary
+            display: "flex",
             justifyContent: "center",
+            alignItems: "center",
           }}
         >
           <Table>
@@ -504,11 +505,20 @@ export default function BasicDemo() {
                     Full Name
                   </Typography>
                 </TableCell>
+                <TableCell>
+                  <Typography
+                    sx={{ color: "white" }}
+                    variant="subtitle2"
+                    fontWeight={600}
+                  >
+                    Attendance Status
+                  </Typography>
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {products.map((product) => (
-                <TableRow key={product.name}>
+                <TableRow key={product.id}>
                   <TableCell>
                     <Typography
                       sx={{
@@ -521,22 +531,13 @@ export default function BasicDemo() {
                     </Typography>
                   </TableCell>
                   <TableCell>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                      }}
+                    <Typography
+                      sx={{ color: "white" }}
+                      variant="subtitle2"
+                      fontWeight={600}
                     >
-                      <Box>
-                        <Typography
-                          sx={{ color: "white" }}
-                          variant="subtitle2"
-                          fontWeight={600}
-                        >
-                          {product.reg_number}
-                        </Typography>
-                      </Box>
-                    </Box>
+                      {product.reg_number}
+                    </Typography>
                   </TableCell>
                   <TableCell>
                     <Typography
@@ -548,12 +549,23 @@ export default function BasicDemo() {
                       {product.full_name}
                     </Typography>
                   </TableCell>
+                  <TableCell>
+                    <Typography
+                      color="textSecondary"
+                      variant="subtitle2"
+                      fontWeight={400}
+                      sx={{ color: "white" }}
+                    >
+                      {product.attendance_status} {/* Attendance Status */}
+                    </Typography>
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
         </Box>
       </div>
+
       <br />
     </div>
   );

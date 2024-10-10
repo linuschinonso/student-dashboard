@@ -2,9 +2,58 @@
 import Navbar from "@/components/Navbar";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 
 function Page() {
+  // State to manage form inputs
+  const [formData, setFormData] = useState({
+    fullname: "",
+    email: "",
+    phone: "",
+    gender: "",
+    contactMethod: "",
+  });
+
+  // State to manage API response and errors
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  // Handle form input change
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetch("/api/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Something went wrong!");
+      }
+
+      // Handle success, show feedback to the user, redirect, etc.
+      console.log("User signed up successfully:", data);
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="bg-[#121212] min-h-screen text-white">
       <Navbar />
@@ -37,63 +86,23 @@ function Page() {
           Registration Form
         </h1>
 
-        <form action="#" method="post" className="space-y-6">
+        {error && <p className="text-red-500">{error}</p>}
+
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label
-              htmlFor="fullname"
-              className="block text-gray-700 font-medium"
-            >
+            <label htmlFor="fullname" className="block text-gray-700 font-medium">
               Full Name
             </label>
             <input
               type="text"
               id="fullname"
               name="fullname"
+              value={formData.fullname}
+              onChange={handleInputChange}
               className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
+              required
             />
           </div>
-          {/* 
-          <div>
-            <label
-              htmlFor="regname"
-              className="block text-gray-700 font-medium"
-            >
-              Registration Name (if applicable)
-            </label>
-            <input
-              type="text"
-              id="regname"
-              name="regname"
-              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="dob" className="block text-gray-700 font-medium">
-              Date of Birth
-            </label>
-            <input
-              type="date"
-              id="dob"
-              name="dob"
-              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-            />
-          </div>
-
-          <div>
-            <label
-              htmlFor="address"
-              className="block text-gray-700 font-medium"
-            >
-              Address
-            </label>
-            <input
-              type="text"
-              id="address"
-              name="address"
-              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-            />
-          </div> */}
 
           <div>
             <label htmlFor="email" className="block text-gray-700 font-medium">
@@ -103,7 +112,10 @@ function Page() {
               type="email"
               id="email"
               name="email"
+              value={formData.email}
+              onChange={handleInputChange}
               className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
+              required
             />
           </div>
 
@@ -115,7 +127,10 @@ function Page() {
               type="tel"
               id="phone"
               name="phone"
+              value={formData.phone}
+              onChange={handleInputChange}
               className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
+              required
             />
           </div>
 
@@ -127,6 +142,8 @@ function Page() {
                   type="radio"
                   name="gender"
                   value="male"
+                  checked={formData.gender === "male"}
+                  onChange={handleInputChange}
                   className="form-radio text-blue-500"
                 />
                 <span className="ml-2 text-gray-700">Male</span>
@@ -136,6 +153,8 @@ function Page() {
                   type="radio"
                   name="gender"
                   value="female"
+                  checked={formData.gender === "female"}
+                  onChange={handleInputChange}
                   className="form-radio text-blue-500"
                 />
                 <span className="ml-2 text-gray-700">Female</span>
@@ -145,18 +164,11 @@ function Page() {
                   type="radio"
                   name="gender"
                   value="other"
+                  checked={formData.gender === "other"}
+                  onChange={handleInputChange}
                   className="form-radio text-blue-500"
                 />
                 <span className="ml-2 text-gray-700">Other</span>
-              </label>
-              <label className="inline-flex items-center">
-                <input
-                  type="radio"
-                  name="gender"
-                  value="prefer-not"
-                  className="form-radio text-blue-500"
-                />
-                <span className="ml-2 text-gray-700">Prefer not to say</span>
               </label>
             </div>
           </div>
@@ -169,8 +181,10 @@ function Page() {
               <label className="inline-flex items-center">
                 <input
                   type="radio"
-                  name="contact"
+                  name="contactMethod"
                   value="email"
+                  checked={formData.contactMethod === "email"}
+                  onChange={handleInputChange}
                   className="form-radio text-blue-500"
                 />
                 <span className="ml-2 text-gray-700">Email</span>
@@ -178,8 +192,10 @@ function Page() {
               <label className="inline-flex items-center">
                 <input
                   type="radio"
-                  name="contact"
+                  name="contactMethod"
                   value="phone"
+                  checked={formData.contactMethod === "phone"}
+                  onChange={handleInputChange}
                   className="form-radio text-blue-500"
                 />
                 <span className="ml-2 text-gray-700">Phone Call</span>
@@ -187,8 +203,10 @@ function Page() {
               <label className="inline-flex items-center">
                 <input
                   type="radio"
-                  name="contact"
+                  name="contactMethod"
                   value="text"
+                  checked={formData.contactMethod === "text"}
+                  onChange={handleInputChange}
                   className="form-radio text-blue-500"
                 />
                 <span className="ml-2 text-gray-700">Text Message</span>
@@ -200,8 +218,9 @@ function Page() {
             <button
               type="submit"
               className="px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50"
+              disabled={isLoading}
             >
-              Submit
+              {isLoading ? "Submitting..." : "Submit"}
             </button>
           </div>
         </form>

@@ -52,7 +52,7 @@ function Page() {
               className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
             />
           </div>
-
+          {/* 
           <div>
             <label
               htmlFor="regname"
@@ -93,7 +93,7 @@ function Page() {
               name="address"
               className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
             />
-          </div>
+          </div> */}
 
           <div>
             <label htmlFor="email" className="block text-gray-700 font-medium">
@@ -194,63 +194,6 @@ function Page() {
                 <span className="ml-2 text-gray-700">Text Message</span>
               </label>
             </div>
-          </div>
-
-          <div>
-            <label
-              htmlFor="emergency-contact-name"
-              className="block text-gray-700 font-medium"
-            >
-              Emergency Contact Name
-            </label>
-            <input
-              type="text"
-              id="emergency-contact-name"
-              name="emergency-contact-name"
-              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-            />
-          </div>
-
-          <div>
-            <label
-              htmlFor="emergency-contact-phone"
-              className="block text-gray-700 font-medium"
-            >
-              Emergency Contact Phone Number
-            </label>
-            <input
-              type="tel"
-              id="emergency-contact-phone"
-              name="emergency-contact-phone"
-              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-            />
-          </div>
-
-          <div>
-            <label
-              htmlFor="signature"
-              className="block text-gray-700 font-medium"
-            >
-              Signature
-            </label>
-            <input
-              type="text"
-              id="signature"
-              name="signature"
-              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-            />
-          </div>
-
-          <div>
-            <label htmlFor="date" className="block text-gray-700 font-medium">
-              Date
-            </label>
-            <input
-              type="date"
-              id="date"
-              name="date"
-              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-            />
           </div>
 
           <div className="text-center">

@@ -51,7 +51,7 @@ function Navbar() {
             href="/createStudent"
             class="text-sm font-semibold leading-6 text-white"
           >
-            Student
+            Create Student
           </a>
           <a href="#" class="text-sm font-semibold leading-6 text-white">
             Settings

@@ -7,12 +7,12 @@ import React, { useState } from "react";
 function Page() {
   // State to manage form inputs
   const [formData, setFormData] = useState({
-    full_name: "",  // Corrected to match state
+    full_name: "", // Corrected to match state
     email: "",
     phone: "",
     gender: "",
     contactMethod: "",
-    level: "200lvl",  // Initial default value
+    level: "200lvl", // Initial default value
     reg_number: "",
     username: "",
     password: "",
@@ -97,7 +97,10 @@ function Page() {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="full_name" className="block text-gray-700 font-medium">
+            <label
+              htmlFor="full_name"
+              className="block text-gray-700 font-medium"
+            >
               Full Name
             </label>
             <input
@@ -241,7 +244,10 @@ function Page() {
           </div>
 
           <div>
-            <label htmlFor="reg_number" className="block text-gray-700 font-medium">
+            <label
+              htmlFor="reg_number"
+              className="block text-gray-700 font-medium"
+            >
               Registration Number
             </label>
             <input
@@ -256,7 +262,10 @@ function Page() {
           </div>
 
           <div>
-            <label htmlFor="username" className="block text-gray-700 font-medium">
+            <label
+              htmlFor="username"
+              className="block text-gray-700 font-medium"
+            >
               Username
             </label>
             <input
@@ -271,7 +280,10 @@ function Page() {
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-gray-700 font-medium">
+            <label
+              htmlFor="password"
+              className="block text-gray-700 font-medium"
+            >
               Password
             </label>
             <input

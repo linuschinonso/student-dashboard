@@ -394,10 +394,10 @@ export default function BasicDemo() {
         </div>
       </div>
       <br />
-      <p className="text-white text-2xl font-bold m-4 ml-10 sm:text-center">
+      {/* <p className="text-white text-2xl font-bold m-4 ml-10 sm:text-center">
         Analytics
-      </p>
-      <div className="md:flex flex-row space-x-4 lg:self-center justify-center sm:flex-col">
+      </p> */}
+      {/* <div className="md:flex flex-row space-x-4 lg:self-center justify-center sm:flex-col">
         <div>
           <p className="text-white text-xl font-medium m-4 ml-10 sm:text-center">
             Students
@@ -460,7 +460,7 @@ export default function BasicDemo() {
             </>
           </div>
         </div>
-      </div>
+      </div> */}
       <p className="text-white text-2xl font-bold m-4 ml-10 sm:text-center">
         Students
       </p>

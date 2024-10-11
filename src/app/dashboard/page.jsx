@@ -32,10 +32,22 @@ export default function BasicDemo() {
     if (number) return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
   const [products, setproducts] = useState([]);
+  async function fetchStudentsCountByLevel() {
+    try {
+      const response = await fetch(
+        "https://linus-student-backend.vercel.app/student-lvls"
+      );
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      return data; // Returns an array of { level, count }
+    } catch (error) {
+      console.error("Error fetching student count by level:", error);
+    }
+  }
   async function fetchAllStudents() {
-    // const endpoint = "https://linus-student-backend-fmzv.onrender.com/students";
     const endpoint = "https://linus-student-backend.vercel.app/students";
-    // const endpoint = "http://localhost:8080/students";
     try {
       const response = await axios.get(endpoint);
 
@@ -62,6 +74,17 @@ export default function BasicDemo() {
       }
     }
   }
+  const [studentCounts, setStudentCounts] = useState([]);
+
+  useEffect(() => {
+    const getStudentCounts = async () => {
+      const counts = await fetchStudentsCountByLevel();
+      setStudentCounts(counts);
+      console.log(counts);
+    };
+
+    getStudentCounts();
+  }, []);
 
   useEffect(() => {
     fetchAllStudents();

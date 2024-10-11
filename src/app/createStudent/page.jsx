@@ -36,7 +36,7 @@ function Page() {
 
     try {
       const response = await fetch(
-        "https://linus-student-backend.vercel.app/students",
+        "https://linus-student-backend.onrender.com/students",
         {
           method: "POST",
           headers: {

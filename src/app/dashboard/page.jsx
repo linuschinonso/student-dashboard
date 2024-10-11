@@ -31,11 +31,12 @@ export default function BasicDemo() {
   function addCommas(number) {
     if (number) return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
+  const [count100lvls, setCount100lvls] = useState(0);
   const [products, setproducts] = useState([]);
   async function fetchStudentsCountByLevel() {
     try {
       const response = await fetch(
-        "https://linus-student-backend.vercel.app/student/lvls"
+        "https://linus-student-backend.onrender.com/student/lvls"
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -88,6 +89,10 @@ export default function BasicDemo() {
 
   useEffect(() => {
     fetchAllStudents();
+  }, []);
+  useEffect(() => {
+    const levelCount = studentCounts.find((item) => item.level === "100lvls");
+    setCount100lvls(levelCount ? levelCount.count : 0);
   }, []);
 
   return (
@@ -159,7 +164,13 @@ export default function BasicDemo() {
                 <p className="text-white"> 100 Level</p>
               </StatLabel>
               <StatNumber>
-                <p className="text-white"> {addCommas(820)}</p>
+                <p className="text-white">
+                  {" "}
+                  {addCommas(
+                    studentCounts.find((item) => item.level === "100lvl")
+                      ?.count || 0
+                  )}
+                </p>
               </StatNumber>
               <StatHelpText>
                 <p className="text-white">
@@ -192,7 +203,13 @@ export default function BasicDemo() {
                 <p className="text-white"> 200 Level</p>
               </StatLabel>
               <StatNumber>
-                <p className="text-white"> {addCommas(620)}</p>
+                <p className="text-white">
+                  {" "}
+                  {addCommas(
+                    studentCounts.find((item) => item.level === "200lvl")
+                      ?.count || 0
+                  )}
+                </p>
               </StatNumber>
               <StatHelpText>
                 <p className="text-white">
@@ -225,7 +242,13 @@ export default function BasicDemo() {
                 <p className="text-white"> 300 Level</p>
               </StatLabel>
               <StatNumber>
-                <p className="text-white"> {addCommas(340)}</p>
+                <p className="text-white">
+                  {" "}
+                  {addCommas(
+                    studentCounts.find((item) => item.level === "300lvl")
+                      ?.count || 0
+                  )}
+                </p>
               </StatNumber>
               <StatHelpText>
                 <p className="text-white">
@@ -258,7 +281,13 @@ export default function BasicDemo() {
                 <p className="text-white"> 400 Level</p>
               </StatLabel>
               <StatNumber>
-                <p className="text-white"> {addCommas(100)}</p>
+                <p className="text-white">
+                  {" "}
+                  {addCommas(
+                    studentCounts.find((item) => item.level === "400lvl")
+                      ?.count || 0
+                  )}
+                </p>
               </StatNumber>
               <StatHelpText>
                 <p className="text-white">

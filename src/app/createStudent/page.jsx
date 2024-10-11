@@ -35,27 +35,27 @@ function Page() {
     setError(null);
 
     try {
-      const response = await fetch(
-        "https://linus-student-backend-fmzv.onrender.com/students",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      const response = await fetch("http://localhost:8080/students", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
       const data = await response.json();
 
       if (!response.ok) {
         throw new Error(data.message || "Something went wrong!");
+        alert(data);
       }
 
       // Handle success, show feedback to the user, redirect, etc.
       console.log("User signed up successfully:", data);
+      window.location.href = "/dashboard";
     } catch (err) {
       setError(err.message);
+      alert(err.message);
     } finally {
       setIsLoading(false);
     }

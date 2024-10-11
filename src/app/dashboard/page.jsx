@@ -33,8 +33,9 @@ export default function BasicDemo() {
   }
   const [products, setproducts] = useState([]);
   async function fetchAllStudents() {
-   // const endpoint = "https://linus-student-backend-fmzv.onrender.com/students";
-      const endpoint = "https://linus-student-backend.vercel.app/students"
+    // const endpoint = "https://linus-student-backend-fmzv.onrender.com/students";
+    // const endpoint = "https://linus-student-backend.vercel.app/students"
+    const endpoint = "http://localhost:8080/students";
     try {
       const response = await axios.get(endpoint);
 

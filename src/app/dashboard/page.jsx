@@ -102,7 +102,7 @@ export default function BasicDemo() {
                 <p className="text-white"> Admin Users</p>
               </StatLabel>
               <StatNumber>
-                <p className="text-white"> {addCommas(5)}</p>
+                <p className="text-white"> {addCommas(1)}</p>
               </StatNumber>
               <StatHelpText>
                 <p className="text-white">

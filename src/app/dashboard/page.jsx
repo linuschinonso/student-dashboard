@@ -556,7 +556,7 @@ export default function BasicDemo() {
                       fontWeight={400}
                       sx={{ color: "white" }}
                     >
-                      {product.attendance_status} Absent{" "}
+                      {product.status ? product.status : "Absent"}{" "}
                       {/* Attendance Status */}
                     </Typography>
                   </TableCell>

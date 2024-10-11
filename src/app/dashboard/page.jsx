@@ -35,7 +35,7 @@ export default function BasicDemo() {
   async function fetchStudentsCountByLevel() {
     try {
       const response = await fetch(
-        "https://linus-student-backend.vercel.app/student-lvls"
+        "https://linus-student-backend.vercel.app/student/lvls"
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");

@@ -54,7 +54,7 @@ export default function BasicDemo() {
 
       if (response.status === 200) {
         console.log("Students:", response.data);
-        alert(JSON.stringify(response.data));
+        // alert(JSON.stringify(response.data));
         setproducts(response.data);
       } else {
         console.error(`Error: ${response.status} - ${response.statusText}`);

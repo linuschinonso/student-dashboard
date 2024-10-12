@@ -48,12 +48,13 @@ export default function BasicDemo() {
     }
   }
   async function fetchAllStudents() {
-    const endpoint = "https://linus-student-backend.vercel.app/students";
+    const endpoint = "https://linus-student-backend-fmzv.onrender.com/students";
     try {
       const response = await axios.get(endpoint);
 
       if (response.status === 200) {
         console.log("Students:", response.data);
+        alert(JSON.stringify(response.data));
         setproducts(response.data);
       } else {
         console.error(`Error: ${response.status} - ${response.statusText}`);
@@ -564,6 +565,15 @@ export default function BasicDemo() {
                     variant="subtitle2"
                     fontWeight={600}
                   >
+                    Level
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography
+                    sx={{ color: "white" }}
+                    variant="subtitle2"
+                    fontWeight={600}
+                  >
                     Attendance Status
                   </Typography>
                 </TableCell>
@@ -600,6 +610,16 @@ export default function BasicDemo() {
                       sx={{ color: "white" }}
                     >
                       {product.full_name}
+                    </Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography
+                      color="textSecondary"
+                      variant="subtitle2"
+                      fontWeight={400}
+                      sx={{ color: "white" }}
+                    >
+                      {product?.level}
                     </Typography>
                   </TableCell>
                   <TableCell>

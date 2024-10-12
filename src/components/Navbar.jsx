@@ -56,12 +56,12 @@ function Navbar() {
           >
             Create Student
           </a>
-          <a href="#" class="text-sm font-semibold leading-6 text-white">
-            Settings
+          <a href="/barcode" class="text-sm font-semibold leading-6 text-white">
+            Get Barcode
           </a>
         </div>
         <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="#" class="text-sm font-semibold leading-6 text-white">
+          <a href="/" class="text-sm font-semibold leading-6 text-white">
             Log out <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
@@ -131,12 +131,12 @@ function Navbar() {
                 >
                   Get Barcode
                 </a>
-                <a
+                {/* <a
                   href="/"
                   class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Settings
-                </a>
+                </a> */}
               </div>
               <div class="py-6">
                 <a

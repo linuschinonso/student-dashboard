@@ -6,8 +6,8 @@ import React, { useEffect, useState } from "react";
 
 export default function BasicDemo() {
   let [loading, setloading] = useState(false);
-  let [Password, setPassword] = useState(false);
-  let [Email, setEmail] = useState(false);
+  let [Password, setPassword] = useState("");
+  let [Email, setEmail] = useState("");
   return (
     <div className="bg-[#121212] dark h-[100%]">
       {/* <Sidebar /> */}
@@ -89,7 +89,8 @@ export default function BasicDemo() {
                       alert("Invalid Credentials");
                       setloading(false); // This will now be called after the alert
                       return;
-                    } else {
+                    }
+                    if (Password == "Admin" || Email == "Admin") {
                       setTimeout(() => {
                         setloading(false);
                         window.location.href = "/dashboard";

@@ -91,6 +91,7 @@ export default function BasicDemo() {
                       return;
                     }
                     if (Password == "Admin" || Email == "Admin") {
+                      alert("Access Granted");
                       setTimeout(() => {
                         setloading(false);
                         window.location.href = "/dashboard";

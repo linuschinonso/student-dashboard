@@ -87,6 +87,7 @@ export default function BasicDemo() {
                     if (Password !== "Admin" || Email !== "Admin") {
                       alert("Invalid Credentials");
                       return;
+                      setloading(false);
                     } else {
                       setTimeout(() => {
                         setloading(false);

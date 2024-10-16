@@ -84,10 +84,15 @@ export default function BasicDemo() {
                 <button
                   onClick={() => {
                     setloading(true);
-                    setTimeout(() => {
-                      setloading(false);
-                      window.location.href = "/dashboard";
-                    }, 2000);
+                    if (Password !== "Admin" || Email !== "Admin") {
+                      alert("Invalid Credentials");
+                      return;
+                    } else {
+                      setTimeout(() => {
+                        setloading(false);
+                        window.location.href = "/dashboard";
+                      }, 2000);
+                    }
                   }}
                   class="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600"
                 >

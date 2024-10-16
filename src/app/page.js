@@ -62,7 +62,7 @@ export default function BasicDemo() {
                 <input
                   class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
                   type="email"
-                  onChange={() => setEmail(e.target.value)}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div class="mt-4">
@@ -77,14 +77,14 @@ export default function BasicDemo() {
                 <input
                   class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
                   type="password"
-                  onChange={() => setPassword(e.target.value)}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
               <div class="mt-8">
                 <button
                   onClick={() => {
                     setloading(true);
-
+                    alert(Email, Password);
                     if (Password !== "Admin" || Email !== "Admin") {
                       alert("Invalid Credentials");
                       setloading(false); // This will now be called after the alert

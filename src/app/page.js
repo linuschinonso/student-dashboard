@@ -1,10 +1,13 @@
 "use client";
 import Sidebar from "@/components/Sidebar";
 // import { redirect } from "next/dist/server/api-utils";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 // import { Button } from "primereact/button";
 
 export default function BasicDemo() {
+  let [loading, setloading] = useState(false);
+  let [Password, setPassword] = useState(false);
+  let [Email, setEmail] = useState(false);
   return (
     <div className="bg-[#121212] dark h-[100%]">
       {/* <Sidebar /> */}
@@ -59,6 +62,7 @@ export default function BasicDemo() {
                 <input
                   class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
                   type="email"
+                  onChange={() => setEmail(e.target.value)}
                 />
               </div>
               <div class="mt-4">
@@ -73,16 +77,21 @@ export default function BasicDemo() {
                 <input
                   class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
                   type="password"
+                  onChange={() => setPassword(e.target.value)}
                 />
               </div>
               <div class="mt-8">
                 <button
                   onClick={() => {
-                    window.location.href = "/dashboard";
+                    setloading(true);
+                    setTimeout(() => {
+                      setloading(false);
+                      window.location.href = "/dashboard";
+                    }, 2000);
                   }}
                   class="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600"
                 >
-                  Login
+                  {loading ? "Loading..." : "Signin "}
                 </button>
               </div>
               {/* <div class="mt-4 flex items-center justify-between">

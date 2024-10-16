@@ -84,10 +84,11 @@ export default function BasicDemo() {
                 <button
                   onClick={() => {
                     setloading(true);
+
                     if (Password !== "Admin" || Email !== "Admin") {
                       alert("Invalid Credentials");
+                      setloading(false); // This will now be called after the alert
                       return;
-                      setloading(false);
                     } else {
                       setTimeout(() => {
                         setloading(false);

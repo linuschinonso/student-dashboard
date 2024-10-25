@@ -14,17 +14,18 @@ import {
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import Sidebar from "@/components/Sidebar";
 import { BarChart, ChartContainer, PieChart } from "@mui/x-charts";
+import { Box, Chip, Typography } from "@mui/material";
+import axios from "axios";
 import {
-  Box,
-  Chip,
   Table,
   TableBody,
   TableCell,
   TableHead,
+  TableHeader,
   TableRow,
-  Typography,
-} from "@mui/material";
-import axios from "axios";
+} from "@/components/ui/table";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Card } from "@/components/ui/card";
 // import { Button } from "primereact/button";
 
 export default function BasicDemo() {
@@ -518,126 +519,80 @@ export default function BasicDemo() {
       <p className="text-white text-2xl font-bold m-4 ml-10 sm:text-center">
         Students
       </p>
-      <div className="flex justify-center items-center text-white border border-white m-2">
-        <Box
-          sx={{
-            overflow: "auto",
-            color: "white",
-            width: "95%", // Adjust the width as necessary
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>
-                  <Typography
-                    sx={{ color: "white" }}
-                    variant="subtitle2"
-                    fontWeight={600}
-                  >
-                    ID
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography
-                    sx={{ color: "white" }}
-                    variant="subtitle2"
-                    fontWeight={600}
-                  >
+      <div className="w-full p-4">
+        <Card className="border border-white/20">
+          <ScrollArea className="h-[calc(100vh-200px)] w-full">
+            <Table>
+              <TableHeader>
+                <TableRow className="hover:bg-white/5">
+                  <TableHead className="text-white font-semibold">ID</TableHead>
+                  <TableHead className="text-white font-semibold">
                     Reg Number
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography
-                    sx={{ color: "white" }}
-                    variant="subtitle2"
-                    fontWeight={600}
-                  >
+                  </TableHead>
+                  <TableHead className="text-white font-semibold hidden md:table-cell">
                     Full Name
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography
-                    sx={{ color: "white" }}
-                    variant="subtitle2"
-                    fontWeight={600}
-                  >
+                  </TableHead>
+                  <TableHead className="text-white font-semibold hidden sm:table-cell">
                     Level
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography
-                    sx={{ color: "white" }}
-                    variant="subtitle2"
-                    fontWeight={600}
-                  >
-                    Attendance Status
-                  </Typography>
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {products.map((product) => (
-                <TableRow key={product.id}>
-                  <TableCell>
-                    <Typography
-                      sx={{
-                        fontSize: "15px",
-                        fontWeight: "500",
-                        color: "white",
-                      }}
-                    >
-                      {product.id}
-                    </Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography
-                      sx={{ color: "white" }}
-                      variant="subtitle2"
-                      fontWeight={600}
-                    >
-                      {product.reg_number}
-                    </Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography
-                      color="textSecondary"
-                      variant="subtitle2"
-                      fontWeight={400}
-                      sx={{ color: "white" }}
-                    >
-                      {product.full_name}
-                    </Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography
-                      color="textSecondary"
-                      variant="subtitle2"
-                      fontWeight={400}
-                      sx={{ color: "white" }}
-                    >
-                      {product?.level}
-                    </Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography
-                      color="textSecondary"
-                      variant="subtitle2"
-                      fontWeight={400}
-                      sx={{ color: "white" }}
-                    >
-                      {product.status ? product.status : "Absent"}{" "}
-                      {/* Attendance Status */}
-                    </Typography>
-                  </TableCell>
+                  </TableHead>
+                  <TableHead className="text-white font-semibold">
+                    Status
+                  </TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </Box>
+              </TableHeader>
+              <TableBody>
+                {products.map((product) => (
+                  <TableRow key={product.id} className="hover:bg-white/5">
+                    <TableCell className="text-white">{product.id}</TableCell>
+                    <TableCell className="text-white font-medium">
+                      {product.reg_number}
+                    </TableCell>
+                    <TableCell className="text-white/90 hidden md:table-cell">
+                      {product.full_name}
+                    </TableCell>
+                    <TableCell className="text-white/90 hidden sm:table-cell">
+                      {product?.level}
+                    </TableCell>
+                    <TableCell className="text-white/90">
+                      {product.status || "Absent"}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </ScrollArea>
+        </Card>
+
+        {/* Mobile View - Displayed under each row for smaller screens */}
+        <div className="md:hidden space-y-4 mt-4">
+          {products.map((product) => (
+            <Card
+              key={product.id}
+              className="p-4 border border-white/20 space-y-2"
+            >
+              <div className="flex justify-between">
+                <span className="text-white/70">ID:</span>
+                <span className="text-white">{product.id}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-white/70">Reg Number:</span>
+                <span className="text-white">{product.reg_number}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-white/70">Full Name:</span>
+                <span className="text-white">{product.full_name}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-white/70">Level:</span>
+                <span className="text-white">{product?.level}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-white/70">Status:</span>
+                <span className="text-white">{product.status || "Absent"}</span>
+              </div>
+            </Card>
+          ))}
+        </div>
       </div>
 
       <br />

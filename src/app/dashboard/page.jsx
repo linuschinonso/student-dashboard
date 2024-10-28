@@ -524,7 +524,7 @@ export default function BasicDemo() {
           <ScrollArea className="h-[calc(100vh-200px)] w-full">
             <Table>
               <TableHeader>
-                <TableRow className="hover:bg-white/5">
+                <TableRow className="bg-[#121212] hover:bg-white/5">
                   <TableHead className="text-white font-semibold">ID</TableHead>
                   <TableHead className="text-white font-semibold">
                     Reg Number
@@ -542,7 +542,10 @@ export default function BasicDemo() {
               </TableHeader>
               <TableBody>
                 {products.map((product) => (
-                  <TableRow key={product.id} className="hover:bg-white/5">
+                  <TableRow
+                    key={product.id}
+                    className="bg-[#121212] hover:bg-white/5"
+                  >
                     <TableCell className="text-white">{product.id}</TableCell>
                     <TableCell className="text-white font-medium">
                       {product.reg_number}
@@ -568,7 +571,7 @@ export default function BasicDemo() {
           {products.map((product) => (
             <Card
               key={product.id}
-              className="p-4 border border-white/20 space-y-2"
+              className="p-4 border bg-[#121212] border-white/20 space-y-2"
             >
               <div className="flex justify-between">
                 <span className="text-white/70">ID:</span>

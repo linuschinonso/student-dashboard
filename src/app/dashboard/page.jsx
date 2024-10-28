@@ -520,7 +520,7 @@ export default function BasicDemo() {
         Students
       </p>
       <div className="w-full p-4">
-        <Card className="border border-white/20">
+        <Card className="border bg-[#121212] border-white/20">
           <ScrollArea className="h-[calc(100vh-200px)] w-full">
             <Table>
               <TableHeader>

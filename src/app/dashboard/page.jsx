@@ -564,7 +564,7 @@ export default function BasicDemo() {
         </Card>
 
         {/* Mobile View - Displayed under each row for smaller screens */}
-        <div className="md:hidden space-y-4 mt-4">
+        <div className="md:hidden dark space-y-4 mt-4">
           {products.map((product) => (
             <Card
               key={product.id}

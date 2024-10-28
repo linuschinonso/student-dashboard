@@ -272,7 +272,7 @@ const Page = () => {
               </div>
 
               {/* Account Credentials */}
-              {/* <div className="space-y-6">
+              <div className="space-y-6">
                 <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider">
                   Account Credentials
                 </h3>
@@ -306,7 +306,7 @@ const Page = () => {
                     />
                   </div>
                 </div>
-              </div> */}
+              </div>
 
               <div className="pt-6 border-t border-gray-100">
                 <Button

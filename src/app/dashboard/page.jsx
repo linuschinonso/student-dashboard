@@ -49,7 +49,7 @@ export default function BasicDemo() {
     }
   }
   async function fetchAllStudents() {
-    const endpoint = "https://linus-student-backend-fmzv.onrender.com/students";
+    const endpoint = "https://linus-student-backend-grop.vercel.app/students";
     try {
       const response = await axios.get(endpoint);
 

@@ -1,34 +1,45 @@
 "use client";
-import Navbar from "@/components/Navbar";
-import { ChevronRightIcon } from "@chakra-ui/icons";
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react";
 import React, { useState } from "react";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
+import { ChevronRight, Loader2 } from "lucide-react";
 
-function Page() {
-  // State to manage form inputs
+const Page = () => {
   const [formData, setFormData] = useState({
-    full_name: "", // Corrected to match state
+    full_name: "",
     email: "",
     phone: "",
     gender: "",
     contactMethod: "",
-    level: "200lvl", // Initial default value
+    level: "200lvl",
     reg_number: "",
     username: "",
     password: "",
   });
 
-  // State to manage API response and errors
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Handle form input change
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Handle form submission
+  const handleSpecialInputs = (name, value) => {
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -50,269 +61,275 @@ function Page() {
 
       if (!response.ok) {
         throw new Error(data.message || "Something went wrong!");
-        alert(data);
       }
 
-      // Handle success, show feedback to the user, redirect, etc.
       console.log("User signed up successfully:", data);
       window.location.href = "/dashboard";
     } catch (err) {
       setError(err.message);
-      alert(err.message);
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="bg-[#121212] min-h-screen text-white">
-      <Navbar />
-      <br />
+    <div className="min-h-screen bg-white">
+      {/* Header Section */}
+      <div className="bg-black py-6">
+        <div className="max-w-6xl mx-auto px-4">
+          <nav className="flex items-center text-sm text-gray-300">
+            <a href="#" className="hover:text-white transition-colors">
+              Home
+            </a>
+            <ChevronRight className="h-4 w-4 mx-2" />
+            <span className="text-white">Student Registration</span>
+          </nav>
+        </div>
+      </div>
 
-      {/* Breadcrumb navigation */}
-      <Breadcrumb
-        className="lg:hidden"
-        spacing="4px"
-        color="white"
-        ml={5}
-        separator={<ChevronRightIcon />}
-      >
-        <BreadcrumbItem>
-          <BreadcrumbLink href="#" color="white">
-            Home
-          </BreadcrumbLink>
-        </BreadcrumbItem>
+      <div className="max-w-4xl mx-auto px-4 py-12">
+        <Card className="border-0 shadow-2xl">
+          <CardHeader className="border-b border-gray-100 pb-6">
+            <CardTitle className="text-2xl font-light text-center text-black tracking-wide">
+              STUDENT REGISTRATION FORM
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="pt-8">
+            {error && (
+              <Alert
+                variant="destructive"
+                className="mb-6 bg-red-50 text-red-900 border border-red-200"
+              >
+                <AlertDescription>{error}</AlertDescription>
+              </Alert>
+            )}
 
-        <BreadcrumbItem>
-          <BreadcrumbLink color="white" href="/dashboard">
-            Create Student
-          </BreadcrumbLink>
-        </BreadcrumbItem>
-      </Breadcrumb>
+            <form onSubmit={handleSubmit} className="space-y-8">
+              {/* Personal Information Section */}
+              <div className="space-y-6">
+                <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider">
+                  Personal Information
+                </h3>
+                <div className="grid gap-6 md:grid-cols-2">
+                  <div className="space-y-2">
+                    <Label htmlFor="full_name" className="text-gray-700">
+                      Full Name
+                    </Label>
+                    <Input
+                      id="full_name"
+                      name="full_name"
+                      value={formData.full_name}
+                      onChange={handleInputChange}
+                      className="border-gray-200 focus:border-black focus:ring-black"
+                      required
+                    />
+                  </div>
 
-      {/* Registration Form */}
-      <div className="max-w-lg mx-auto mt-10 bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-2xl font-bold mb-6 text-center text-black">
-          Registration Form
-        </h1>
+                  <div className="space-y-2">
+                    <Label htmlFor="email" className="text-gray-700">
+                      Email Address
+                    </Label>
+                    <Input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className="border-gray-200 focus:border-black focus:ring-black"
+                      required
+                    />
+                  </div>
+                </div>
 
-        {error && <p className="text-red-500">{error}</p>}
+                <div className="grid gap-6 md:grid-cols-2">
+                  <div className="space-y-2">
+                    <Label htmlFor="phone" className="text-gray-700">
+                      Phone Number
+                    </Label>
+                    <Input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      className="border-gray-200 focus:border-black focus:ring-black"
+                      required
+                    />
+                  </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label
-              htmlFor="full_name"
-              className="block text-gray-700 font-medium"
-            >
-              Full Name
-            </label>
-            <input
-              type="text"
-              id="full_name"
-              name="full_name"
-              value={formData.full_name}
-              onChange={handleInputChange}
-              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-              required
-            />
-          </div>
+                  <div className="space-y-2">
+                    <Label className="text-gray-700">Gender</Label>
+                    <RadioGroup
+                      value={formData.gender}
+                      onValueChange={(value) =>
+                        handleSpecialInputs("gender", value)
+                      }
+                      className="flex space-x-6"
+                    >
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="male" id="male" />
+                        <Label htmlFor="male" className="text-gray-600">
+                          Male
+                        </Label>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="female" id="female" />
+                        <Label htmlFor="female" className="text-gray-600">
+                          Female
+                        </Label>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="other" id="other" />
+                        <Label htmlFor="other" className="text-gray-600">
+                          Other
+                        </Label>
+                      </div>
+                    </RadioGroup>
+                  </div>
+                </div>
+              </div>
 
-          <div>
-            <label htmlFor="email" className="block text-gray-700 font-medium">
-              Email Address
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-              required
-            />
-          </div>
+              {/* Contact Preferences */}
+              <div className="space-y-6">
+                <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider">
+                  Contact Preferences
+                </h3>
+                <div className="space-y-2">
+                  <Label className="text-gray-700">
+                    Preferred Contact Method
+                  </Label>
+                  <RadioGroup
+                    value={formData.contactMethod}
+                    onValueChange={(value) =>
+                      handleSpecialInputs("contactMethod", value)
+                    }
+                    className="flex flex-wrap gap-6"
+                  >
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="email" id="contact-email" />
+                      <Label htmlFor="contact-email" className="text-gray-600">
+                        Email
+                      </Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="phone" id="contact-phone" />
+                      <Label htmlFor="contact-phone" className="text-gray-600">
+                        Phone Call
+                      </Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="text" id="contact-text" />
+                      <Label htmlFor="contact-text" className="text-gray-600">
+                        Text Message
+                      </Label>
+                    </div>
+                  </RadioGroup>
+                </div>
+              </div>
 
-          <div>
-            <label htmlFor="phone" className="block text-gray-700 font-medium">
-              Phone Number
-            </label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              value={formData.phone}
-              onChange={handleInputChange}
-              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-              required
-            />
-          </div>
+              {/* Academic Information */}
+              <div className="space-y-6">
+                <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider">
+                  Academic Information
+                </h3>
+                <div className="grid gap-6 md:grid-cols-2">
+                  <div className="space-y-2">
+                    <Label htmlFor="level" className="text-gray-700">
+                      Level
+                    </Label>
+                    <Select
+                      value={formData.level}
+                      onValueChange={(value) =>
+                        handleSpecialInputs("level", value)
+                      }
+                    >
+                      <SelectTrigger className="border-gray-200 focus:border-black focus:ring-black">
+                        <SelectValue placeholder="Select Level" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="100lvl">100 Level</SelectItem>
+                        <SelectItem value="200lvl">200 Level</SelectItem>
+                        <SelectItem value="300lvl">300 Level</SelectItem>
+                        <SelectItem value="400lvl">400 Level</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
 
-          <div>
-            <label className="block text-gray-700 font-medium">Gender</label>
-            <div className="flex space-x-4 mt-2">
-              <label className="inline-flex items-center">
-                <input
-                  type="radio"
-                  name="gender"
-                  value="male"
-                  checked={formData.gender === "male"}
-                  onChange={handleInputChange}
-                  className="form-radio text-blue-500"
-                />
-                <span className="ml-2 text-gray-700">Male</span>
-              </label>
-              <label className="inline-flex items-center">
-                <input
-                  type="radio"
-                  name="gender"
-                  value="female"
-                  checked={formData.gender === "female"}
-                  onChange={handleInputChange}
-                  className="form-radio text-blue-500"
-                />
-                <span className="ml-2 text-gray-700">Female</span>
-              </label>
-              <label className="inline-flex items-center">
-                <input
-                  type="radio"
-                  name="gender"
-                  value="other"
-                  checked={formData.gender === "other"}
-                  onChange={handleInputChange}
-                  className="form-radio text-blue-500"
-                />
-                <span className="ml-2 text-gray-700">Other</span>
-              </label>
-            </div>
-          </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="reg_number" className="text-gray-700">
+                      Registration Number
+                    </Label>
+                    <Input
+                      id="reg_number"
+                      name="reg_number"
+                      value={formData.reg_number}
+                      onChange={handleInputChange}
+                      className="border-gray-200 focus:border-black focus:ring-black"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
 
-          <div>
-            <label className="block text-gray-700 font-medium">
-              Preferred Contact Method
-            </label>
-            <div className="flex space-x-4 mt-2">
-              <label className="inline-flex items-center">
-                <input
-                  type="radio"
-                  name="contactMethod"
-                  value="email"
-                  checked={formData.contactMethod === "email"}
-                  onChange={handleInputChange}
-                  className="form-radio text-blue-500"
-                />
-                <span className="ml-2 text-gray-700">Email</span>
-              </label>
-              <label className="inline-flex items-center">
-                <input
-                  type="radio"
-                  name="contactMethod"
-                  value="phone"
-                  checked={formData.contactMethod === "phone"}
-                  onChange={handleInputChange}
-                  className="form-radio text-blue-500"
-                />
-                <span className="ml-2 text-gray-700">Phone Call</span>
-              </label>
-              <label className="inline-flex items-center">
-                <input
-                  type="radio"
-                  name="contactMethod"
-                  value="text"
-                  checked={formData.contactMethod === "text"}
-                  onChange={handleInputChange}
-                  className="form-radio text-blue-500"
-                />
-                <span className="ml-2 text-gray-700">Text Message</span>
-              </label>
-            </div>
-          </div>
+              {/* Account Credentials */}
+              {/* <div className="space-y-6">
+                <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider">
+                  Account Credentials
+                </h3>
+                <div className="grid gap-6 md:grid-cols-2">
+                  <div className="space-y-2">
+                    <Label htmlFor="username" className="text-gray-700">
+                      Username
+                    </Label>
+                    <Input
+                      id="username"
+                      name="username"
+                      value={formData.username}
+                      onChange={handleInputChange}
+                      className="border-gray-200 focus:border-black focus:ring-black"
+                      required
+                    />
+                  </div>
 
-          {/* New fields */}
-          <div>
-            <label htmlFor="level" className="block text-gray-700 font-medium">
-              Level
-            </label>
-            <select
-              id="level"
-              name="level"
-              value={formData.level}
-              onChange={handleInputChange}
-              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-            >
-              <option value="100lvl">100lvl</option>
-              <option value="200lvl">200lvl</option>
-              <option value="300lvl">300lvl</option>
-              <option value="400lvl">400lvl</option>
-            </select>
-          </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="password" className="text-gray-700">
+                      Password
+                    </Label>
+                    <Input
+                      type="password"
+                      id="password"
+                      name="password"
+                      value={formData.password}
+                      onChange={handleInputChange}
+                      className="border-gray-200 focus:border-black focus:ring-black"
+                      required
+                    />
+                  </div>
+                </div>
+              </div> */}
 
-          <div>
-            <label
-              htmlFor="reg_number"
-              className="block text-gray-700 font-medium"
-            >
-              Registration Number
-            </label>
-            <input
-              type="text"
-              id="reg_number"
-              name="reg_number"
-              value={formData.reg_number}
-              onChange={handleInputChange}
-              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-              required
-            />
-          </div>
-
-          <div>
-            <label
-              htmlFor="username"
-              className="block text-gray-700 font-medium"
-            >
-              Username
-            </label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              value={formData.username}
-              onChange={handleInputChange}
-              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-              required
-            />
-          </div>
-
-          <div>
-            <label
-              htmlFor="password"
-              className="block text-gray-700 font-medium"
-            >
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleInputChange}
-              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300"
-              required
-            />
-          </div>
-
-          <div className="text-center">
-            <button
-              type="submit"
-              className="px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50"
-              disabled={isLoading}
-            >
-              {isLoading ? "Submitting..." : "Submit"}
-            </button>
-          </div>
-        </form>
+              <div className="pt-6 border-t border-gray-100">
+                <Button
+                  type="submit"
+                  disabled={isLoading}
+                  className="w-full md:w-auto bg-black hover:bg-gray-900 text-white"
+                >
+                  {isLoading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Processing...
+                    </>
+                  ) : (
+                    "Submit Registration"
+                  )}
+                </Button>
+              </div>
+            </form>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
-}
+};
 
 export default Page;

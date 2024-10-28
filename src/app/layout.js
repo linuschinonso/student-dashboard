@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
         />
       </head>
-      <body className={`${inter.className} dark bg-[#121212] w-full h-[100vh]`}>
+      <body className={`${inter.className}  bg-[#121212] w-full h-[100vh]`}>
         {
           <ThemeProvider theme={theme}>
             <ChakraProvider>{children}</ChakraProvider>

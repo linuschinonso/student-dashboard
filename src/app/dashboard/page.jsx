@@ -587,7 +587,7 @@ export default function BasicDemo() {
               </div>
               <div className="flex justify-between">
                 <span className="text-white/70">Level:</span>
-                <span className="text-white">{product?.level}</span>
+                <span className="text-white">{product.level}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-white/70">Status:</span>

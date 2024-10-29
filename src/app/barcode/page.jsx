@@ -35,7 +35,7 @@ const QRCodeGenerator = () => {
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           placeholder="Enter text or URL"
-          className="p-2 mb-2 w-full"
+          className="p-2 mb-2 w-full text-black"
         />
         <button
           onClick={handleGenerate}
